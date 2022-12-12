@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{AdminPanel/header :: copy}"></div>
+<!doctype html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Grid Template · Bootstrap v5.0</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/grid/">
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/grid.css" rel="stylesheet">
+</head>
+<body class="py-4">
+<div th:insert="~{AdminPanel/header :: copy}"></div>
+<main>
+    <div class="container py-5">
+        <div class="row mb-3">
+            <div class="col-4 themed-grid-col">Название</div>
+            <div class="col-4 themed-grid-col">Цена</div>
+            <div class="col-4 themed-grid-col">Путь к изображению</div>
+        </div>
+        <div class="row mb-4" th:each="order: ${orders}">
+            <div class="col-4 themed-grid-col" th:text="${order.getCreationDate()}"></div>
+            <div class="col-4 themed-grid-col" th:text="${order.getAddress()}">.col-asd</div>
+            <div class="col-4 themed-grid-col" th:text="${order.getUser().getName()}">.col-4</div>
+            <div class="col-4 themed-grid-col" th:text="${order.getSummary}">.col-4</div>
+            <div class="col-4 themed-grid-col-products">
+                <div th:each="product: ${order.getProductsList()}">
+                    <p th:text="${product.getProduct().getName()} + x + ${product.getQuantity()}">.col-4
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+</body>
+</html>

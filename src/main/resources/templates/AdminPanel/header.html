@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/%22%3E">
+<head>
+  <meta charset="UTF-8">
+  <title>header</title>
+</head>
+<body>
+<div th:fragment="copy">
+  <header>
+    <!--Navigation panel-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand ms-2" href="/">Магазин игрушек</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <form action="/">
+                <button class="btn text-light" aria-current="page" href="/">Главная</button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="/catalog">
+                <button class="btn text-light">Каталог</button>
+              </form>
+            </li>
+            <li class="nav-item">
+              <form action="/about">
+                <button class="btn text-light">О нас</button>
+              </form>
+            </li>
+            <li class="nav-item" sec:authorize="hasAuthority('admin')">
+              <form action="/admin/products">
+                <button class="btn text-light">Товары</button>
+              </form>
+            </li>
+            <li class="nav-item" sec:authorize="hasAuthority('admin')">
+              <form action="/admin/orders">
+                <button class="btn text-light">Заказы</button>
+              </form>
+            </li>
+          </ul>
+          <form class="d-flex" action="/cart" sec:authorize="isAuthenticated()">
+            <button class="btn btn-outline-light " type="submit">
+              <i class="bi-cart-fill me-1"></i>
+              Корзина
+            </button>
+          </form>
+          <form>
+            <button type="button" class="btn  ms-1  btn-outline-light" data-bs-toggle="modal"
+                    data-bs-target="#loginForm" sec:authorize="!isAuthenticated()">Войти или
+              зарегистрироваться
+            </button>
+          </form>
+          <form th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
+            <button type="submit" class="btn  ms-1  btn-outline-light">Выйти</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+</div>
+<!--Navigation panel-->
+</body>
+</html>
