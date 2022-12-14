@@ -56,7 +56,6 @@ public class CartController {
 
     @PostMapping("/cart/remove/{id}")
     public String removeFromCart(@PathVariable("id") Long id){
-        System.out.println("hello");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
         cartService.removeProduct(id,user);
